@@ -29,9 +29,7 @@ export default function Registration() {
       'dilorom': '4-maktab',
       'shaxribonu': '6-maktab',
       'asadbek': '8-maktab',
-      'muxlisa9': '9-maktab',
       'sayyora': '10-maktab',
-      'muxlisa12': '12-maktab',
       'rahimjon': '13-maktab',
       'karima': '14-maktab',
       'yorqinoy': '15-maktab',
@@ -49,6 +47,19 @@ export default function Registration() {
 
     const loginId = formData.firstName.trim().toLowerCase();
     
+    // Muxlisa ismli 2 ta admin bo'lgani uchun ularni maktabiga qarab ajratamiz
+    if (loginId === 'muxlisa') {
+      if (formData.school === '9-maktab' || formData.school === '12-maktab') {
+        localStorage.setItem('admin_token', 'mock_token');
+        localStorage.setItem('admin_school', formData.school);
+        navigate('/admin/dashboard');
+        return;
+      } else {
+        setError("Iltimos, maktabingizni ham tanlang (9 yoki 12-maktab)");
+        return;
+      }
+    }
+
     if (ADMINS[loginId]) {
       localStorage.setItem('admin_token', 'mock_token');
       localStorage.setItem('admin_school', ADMINS[loginId]);
