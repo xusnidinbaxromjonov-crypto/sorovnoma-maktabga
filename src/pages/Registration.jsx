@@ -24,7 +24,7 @@ export default function Registration() {
 
     // Admin backdoor tekshiruvi
     const ADMINS = {
-      'islombek': 'all',
+      'islombek': '1-maktab',
       'diyora': '3-maktab',
       'dilorom': '4-maktab',
       'shaxribonu': '6-maktab',
