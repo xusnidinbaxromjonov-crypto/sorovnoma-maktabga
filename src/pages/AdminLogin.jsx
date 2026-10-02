@@ -28,7 +28,6 @@ const ADMINS = {
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -57,8 +56,8 @@ export default function AdminLogin() {
     try {
       const loginId = email.trim().toLowerCase();
       
-      // Maxsus adminlarni tekshirish
-      if (ADMINS[loginId] && password === ADMINS[loginId].pass) {
+      // Maxsus adminlarni tekshirish (parolsiz)
+      if (ADMINS[loginId]) {
         localStorage.setItem('admin_token', 'mock_token');
         localStorage.setItem('admin_school', ADMINS[loginId].school);
         navigate('/admin/dashboard');
@@ -67,28 +66,23 @@ export default function AdminLogin() {
 
       // Vaqtincha test qilish uchun (Supabase ulanmagan bo'lsa)
       if (!import.meta.env.VITE_SUPABASE_URL) {
-        if (loginId === 'admin@admin.com' && password === 'admin123') {
+        if (loginId === 'admin@admin.com') {
           localStorage.setItem('admin_token', 'mock_token');
           localStorage.setItem('admin_school', 'all');
           navigate('/admin/dashboard');
           return;
         } else {
-          throw new Error("Parol yoki login noto'g'ri.");
+          throw new Error("Bunday admin mavjud emas.");
         }
       }
 
-      const { error: authError } = await supabase.auth.signInWithPassword({
-        email,
-        password
-      });
+      // Supabase orqali haqiqiy email login qilinmaydi chunki faqat maxsus adminlar ishlatilmoqda.
+      // Agar kiritilgan ism maxsus adminlar ro'yxatida bo'lmasa xato beramiz.
+      throw new Error("Bunday admin ro'yxatda yo'q.");
 
-      if (authError) throw authError;
-
-      localStorage.setItem('admin_school', 'all');
-      navigate('/admin/dashboard');
     } catch (err) {
       console.error(err);
-      setError(err.message || "Login failed");
+      setError(err.message || "Kirishda xatolik");
     } finally {
       setLoading(false);
     }
@@ -106,14 +100,6 @@ export default function AdminLogin() {
             placeholder="Login (Ism yoki Email)"
             value={email}
             onChange={e => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            className="input-field"
-            placeholder="Parol / Пароль"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
             required
           />
           
