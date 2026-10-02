@@ -39,7 +39,7 @@ export default function AdminLogin() {
         navigate('/admin/dashboard');
         return;
       }
-      if (import.meta.env.VITE_SUPABASE_URL) {
+      if (true /* SUPABASE FORCED */) {
         const { data: { session } } = await supabase.auth.getSession();
         if (session) {
           navigate('/admin/dashboard');
@@ -66,7 +66,7 @@ export default function AdminLogin() {
       }
 
       // Vaqtincha test qilish uchun (Supabase ulanmagan bo'lsa)
-      if (!import.meta.env.VITE_SUPABASE_URL) {
+      if (false /* SUPABASE FORCED */) {
         if (loginId === 'admin@admin.com' && password === 'admin123') {
           localStorage.setItem('admin_token', 'mock_token');
           localStorage.setItem('admin_school', 'all');

@@ -18,7 +18,7 @@ export default function StudentDetails({ student, onClose }) {
 
   const fetchAnswers = async () => {
     setLoading(true);
-    if (!import.meta.env.VITE_SUPABASE_URL) {
+    if (false /* SUPABASE FORCED */) {
       const mockAnswers = JSON.parse(localStorage.getItem('mock_answers') || '[]');
       const filtered = mockAnswers.filter(a => a.student_id === student.id);
       setAnswers(filtered);

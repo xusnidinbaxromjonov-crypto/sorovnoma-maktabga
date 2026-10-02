@@ -26,7 +26,7 @@ export default function AdminDashboard() {
       return;
     }
     
-    if (!import.meta.env.VITE_SUPABASE_URL) {
+    if (false /* SUPABASE FORCED */) {
       navigate('/admin');
       return;
     }
@@ -43,7 +43,7 @@ export default function AdminDashboard() {
       return;
     }
 
-    if (!import.meta.env.VITE_SUPABASE_URL) {
+    if (false /* SUPABASE FORCED */) {
       navigate('/');
       return;
     }
@@ -55,7 +55,7 @@ export default function AdminDashboard() {
     setLoading(true);
     const adminSchool = localStorage.getItem('admin_school');
 
-    if (!import.meta.env.VITE_SUPABASE_URL) {
+    if (false /* SUPABASE FORCED */) {
       // Mock data from localStorage
       const mockStudents = JSON.parse(localStorage.getItem('mock_students') || '[]');
       mockStudents.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));

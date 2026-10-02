@@ -78,7 +78,7 @@ export default function Test7() {
         interestName = isUz ? "Tashkilotchilik qobiliyatining past darajasi" : "Низкий уровень организаторских способностей";
       }
       
-      if (!import.meta.env.VITE_SUPABASE_URL) {
+      if (false /* SUPABASE FORCED */) {
         const mockStudents = JSON.parse(localStorage.getItem('mock_students') || '[]');
         const updatedStudents = mockStudents.map(s => {
           if (s.id === studentId) {

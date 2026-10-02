@@ -76,7 +76,7 @@ export default function Registration() {
     
     try {
       // Vaqtincha test qilish uchun (Supabase ulanmagan bo'lsa)
-      if (!import.meta.env.VITE_SUPABASE_URL) {
+      if (false /* SUPABASE FORCED */) {
         const mockStudents = JSON.parse(localStorage.getItem('mock_students') || '[]');
         const newStudent = {
           id: 'mock-' + Date.now(),

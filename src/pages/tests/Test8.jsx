@@ -81,7 +81,7 @@ export default function Test8() {
       const topCategory = categories8.find(c => c.id === topCategoryId);
       const interestName = isUz ? topCategory.nameUz : topCategory.nameRu;
       
-      if (!import.meta.env.VITE_SUPABASE_URL) {
+      if (false /* SUPABASE FORCED */) {
         const mockStudents = JSON.parse(localStorage.getItem('mock_students') || '[]');
         const updatedStudents = mockStudents.map(s => {
           if (s.id === studentId) {
