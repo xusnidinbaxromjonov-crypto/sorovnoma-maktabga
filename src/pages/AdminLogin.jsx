@@ -6,6 +6,7 @@ const ADMINS = {
   'islombek': { school: 'all', pass: '12345' },
   'diyora': { school: '3-maktab', pass: '12345' },
   'dilorom': { school: '4-maktab', pass: '12345' },
+  'jayrona': { school: '5-maktab', pass: '12345' },
   'shaxribonu': { school: '6-maktab', pass: '12345' },
   'asadbek': { school: '8-maktab', pass: '12345' },
   'muxlisa9': { school: '9-maktab', pass: '12345' },

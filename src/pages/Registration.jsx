@@ -28,6 +28,7 @@ export default function Registration() {
       'sarvinoz': '2-maktab',
       'diyora': '3-maktab',
       'dilorom': '4-maktab',
+      'jayrona': '5-maktab',
       'shaxribonu': '6-maktab',
       'asadbek': '8-maktab',
       'sayyora': '10-maktab',
